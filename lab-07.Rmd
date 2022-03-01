@@ -76,5 +76,32 @@ ggplot(df, aes(x=date)) +
 
 ### Exercise 2
 
+```{r}
+df_longer <- df %>%
+  pivot_longer(cols = -date, names_to = "county_type") %>%
+  filter(county_type %in% c("mask_count" , "no_mask_count")) %>% 
+  mutate(county_type = as.numeric(county_type))
+
+df_longer
+```
+
+```{r}
+df_longer_b <- df %>% 
+  pivot_longer(!date , names_to = "mask_mandate" , values_to = "cases")
+
+df_longer_b
+```
+
+
+
+```{r}
+ggplot(df_longer_b , aes(x = date , y = cases , group = mask_mandate , color = mask_mandate))+
+  geom_line()+
+  theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
+  labs(title = "Kansas COVID-19 7 Day Rolling Average of Daily Cases per 100K Population" , subtitle = "Mask Counties vs No Mask Mandate Counties" , x = "Date" , y = "Number of Cases")+
+  scale_colour_discrete(name = "Mask Mandate" , labels = c("Mask Mandate County" , "No Mask Mandate County"))
+```
+
+
 
 Add exercise headings as needed.
