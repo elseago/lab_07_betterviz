@@ -75,6 +75,7 @@ ggplot(df, aes(x=date)) +
 
 
 ### Exercise 2
+Making a new, more honest graph
 
 ```{r}
 df_longer <- df %>%
@@ -98,10 +99,14 @@ df_longer_b
 ggplot(df_longer_b , aes(x = date , y = cases , group = mask_mandate , color = mask_mandate))+
   geom_line()+
   theme(axis.text.x = element_text(angle = 45, vjust = 1, hjust=1)) +
-  labs(title = "Kansas COVID-19 7 Day Rolling Average of Daily Cases per 100K Population" , subtitle = "Mask Counties vs No Mask Mandate Counties" , x = "Date" , y = "Number of Cases")+
+  labs(title = "Kansas COVID-19 7 Day Rolling Average of Daily Cases per 100K Population" , subtitle = "Mask Mandate Counties vs No Mask Mandate Counties" , x = "Date" , y = "Number of Cases")+
   scale_colour_discrete(name = "Mask Mandate" , labels = c("Mask Mandate County" , "No Mask Mandate County"))
 ```
 
 
+### Exercise 3
+My plot more clearly shows that counties without a mask mandate showed fewer cases during this two week period than counties with a mask mandate.
 
-Add exercise headings as needed.
+### Exercise 4
+
+The conclusions we can draw from this graph on the relationship between mask wearing and COVID are somewhat limited. This is the case because we don't know how many people in the counties with the mask mandate were actually wearing masks or how many people in the counties without the mask mandate were wearing masks anyway. It does show that lifting a mask mandate does not necessarily immediately result in a spike in cases.
